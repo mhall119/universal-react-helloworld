@@ -1,0 +1,32 @@
+name: universal-react-helloworld
+version: '0.1' # just for humans, typically '1.2+git' or '1.3.2'
+summary: Single-line elevator pitch for your amazing snap # 79 char long summary
+description: |
+  This is my-snap's description. You have a paragraph or two to tell the
+  most important story about your snap. Keep it under 100 words though,
+  we live in tweetspace and your description wants to look good in the snap
+  store.
+
+grade: stable
+confinement: strict
+
+apps:
+  universal-react-helloworld:
+    command: node-launcher $SNAP/lib/server.js
+    daemon: simple
+    plugs: [network-bind]
+parts:
+  universal-react-helloworld:
+    plugin: nodejs
+    source: .
+    node-engine: 7.7.2
+    install: |
+      ./node_modules/babel-cli/bin/babel.js src --out-dir $SNAPCRAFT_PART_INSTALL/lib --plugins transform-react-jsx --presets es2015
+      ./node_modules/browserify/bin/cmd.js $SNAPCRAFT_PART_INSTALL/lib/client.js -o public/js/bundle.js 
+  launcher:
+    source: .
+    plugin: dump
+    stage:
+      - node-launcher
+    prime:
+      - node-launcher
