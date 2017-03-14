@@ -12,7 +12,7 @@ confinement: strict
 
 apps:
   universal-react-helloworld:
-    command: node-launcher $SNAP/lib/server.js
+    command: env NODE_PATH=$SNAP/lib/node_modules:$SNAP/lib/node_modules/universal-react/node_modules/ node $SNAP/lib/server.js
     daemon: simple
     plugs: [network-bind]
 parts:
@@ -22,11 +22,4 @@ parts:
     node-engine: 7.7.2
     install: |
       ./node_modules/babel-cli/bin/babel.js src --out-dir $SNAPCRAFT_PART_INSTALL/lib --plugins transform-react-jsx --presets es2015
-      ./node_modules/browserify/bin/cmd.js $SNAPCRAFT_PART_INSTALL/lib/client.js -o public/js/bundle.js 
-  launcher:
-    source: .
-    plugin: dump
-    stage:
-      - node-launcher
-    prime:
-      - node-launcher
+      ./node_modules/browserify/bin/cmd.js $SNAPCRAFT_PART_INSTALL/lib/client.js -o $SNAPCRAFT_PART_INSTALL/lib/node_modules/universal-react/public/js/bundle.js 

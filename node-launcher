@@ -1,4 +1,0 @@
-#!/bin/sh
-export NODE_PATH=$SNAP/lib/node_modules/universal-react/node_modules/
-cd $SNAP/lib/node_modules/universal-react
-exec node $@

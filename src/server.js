@@ -1,3 +1,4 @@
+import path from 'path';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import HelloWorld from './components/HelloWorld';
@@ -7,9 +8,10 @@ let app = express();
 
 // Set the view engine to ejs
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'node_modules/universal-react/views'))
 
 // Serve static files from the 'public' folder
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'node_modules/universal-react/public')));
 
 // GET /
 app.get('/', function (req, res) {
