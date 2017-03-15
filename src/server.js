@@ -8,10 +8,10 @@ let app = express();
 
 // Set the view engine to ejs
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'node_modules/universal-react/views'))
+app.set('views', path.join(__dirname, '../views'))
 
 // Serve static files from the 'public' folder
-app.use(express.static(path.join(__dirname, 'node_modules/universal-react/public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // GET /
 app.get('/', function (req, res) {

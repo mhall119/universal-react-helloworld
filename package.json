@@ -8,6 +8,11 @@
     "bundle": "./node_modules/browserify/bin/cmd.js lib/client.js -o public/js/bundle.js",
     "start": "npm run build && npm run bundle && node lib/server.js"
   },
+  "files": [
+    "lib",
+    "public",
+    "views"
+  ],
   "author": "Vance Lucas",
   "license": "BSD",
   "dependencies": {
